@@ -155,6 +155,8 @@ static const CGFloat kJPEGCompressionQuality = 0.7;
             
         imagePicker.allowsEditing = NO;
         [imagePicker setDelegate:self];
+        
+//        [self.view addSubview:imagePicker.view];
         [self presentViewController: imagePicker
                                animated: YES completion:nil];
         }

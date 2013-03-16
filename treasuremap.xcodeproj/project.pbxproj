@@ -46,12 +46,6 @@
 		2BFEFE5F16F309E400216A68 /* PhotoMoment.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BFEFE5E16F309E400216A68 /* PhotoMoment.m */; };
 		2BFEFE6216F3391A00216A68 /* 86-camera.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BFEFE6016F3391800216A68 /* 86-camera.png */; };
 		2BFEFE6316F3391A00216A68 /* 103-map.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BFEFE6116F3391900216A68 /* 103-map.png */; };
-		2BFEFE6616F33A3700216A68 /* 86-camera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BFEFE6416F33A3700216A68 /* 86-camera@2x.png */; };
-		2BFEFE6716F33A3700216A68 /* 103-map@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BFEFE6516F33A3700216A68 /* 103-map@2x.png */; };
-		2BFEFE6E16F3F09100216A68 /* 31-circle-x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BFEFE6C16F3F09000216A68 /* 31-circle-x.png */; };
-		2BFEFE6F16F3F09100216A68 /* 21-circle-east.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BFEFE6D16F3F09000216A68 /* 21-circle-east.png */; };
-		2BFEFE7416F3F15400216A68 /* 21-circle-east@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BFEFE7216F3F15300216A68 /* 21-circle-east@2x.png */; };
-		2BFEFE7516F3F15400216A68 /* 31-circle-x@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BFEFE7316F3F15400216A68 /* 31-circle-x@2x.png */; };
 		2BFEFE7816F3F39400216A68 /* circle-x@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BFEFE7616F3F39300216A68 /* circle-x@2x.png */; };
 		2BFEFE7916F3F39400216A68 /* circle-east@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BFEFE7716F3F39300216A68 /* circle-east@2x.png */; };
 /* End PBXBuildFile section */
@@ -106,12 +100,6 @@
 		2BFEFE5E16F309E400216A68 /* PhotoMoment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoMoment.m; sourceTree = "<group>"; };
 		2BFEFE6016F3391800216A68 /* 86-camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "86-camera.png"; sourceTree = "<group>"; };
 		2BFEFE6116F3391900216A68 /* 103-map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "103-map.png"; sourceTree = "<group>"; };
-		2BFEFE6416F33A3700216A68 /* 86-camera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "86-camera@2x.png"; sourceTree = "<group>"; };
-		2BFEFE6516F33A3700216A68 /* 103-map@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "103-map@2x.png"; sourceTree = "<group>"; };
-		2BFEFE6C16F3F09000216A68 /* 31-circle-x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "31-circle-x.png"; sourceTree = "<group>"; };
-		2BFEFE6D16F3F09000216A68 /* 21-circle-east.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "21-circle-east.png"; sourceTree = "<group>"; };
-		2BFEFE7216F3F15300216A68 /* 21-circle-east@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "21-circle-east@2x.png"; sourceTree = "<group>"; };
-		2BFEFE7316F3F15400216A68 /* 31-circle-x@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "31-circle-x@2x.png"; sourceTree = "<group>"; };
 		2BFEFE7616F3F39300216A68 /* circle-x@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "circle-x@2x.png"; path = "../circle-x@2x.png"; sourceTree = "<group>"; };
 		2BFEFE7716F3F39300216A68 /* circle-east@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "circle-east@2x.png"; path = "../circle-east@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -193,25 +181,17 @@
 		2B46C8FF16E6B5D900C8B966 /* treasuremap */ = {
 			isa = PBXGroup;
 			children = (
-				2BFEFE7616F3F39300216A68 /* circle-x@2x.png */,
-				2BFEFE7716F3F39300216A68 /* circle-east@2x.png */,
 				2B46C90816E6B5D900C8B966 /* AppDelegate.h */,
 				2B46C90916E6B5D900C8B966 /* AppDelegate.m */,
 				2BDFD6B816F1E492001B5E3D /* LoginViewController.h */,
 				2BDFD6B916F1E492001B5E3D /* LoginViewController.m */,
 				2B46C91116E6B5D900C8B966 /* MainStoryboard.storyboard */,
-				2BFEFE7216F3F15300216A68 /* 21-circle-east@2x.png */,
-				2BFEFE7316F3F15400216A68 /* 31-circle-x@2x.png */,
-				2BFEFE6416F33A3700216A68 /* 86-camera@2x.png */,
-				2BFEFE6516F33A3700216A68 /* 103-map@2x.png */,
 				2B46C92916E737BD00C8B966 /* CameraViewController.h */,
 				2B46C92A16E737BD00C8B966 /* CameraViewController.m */,
 				2BFEFE5716F2739A00216A68 /* SharedDataManager.h */,
 				2BFEFE5816F2739A00216A68 /* SharedDataManager.m */,
 				2BFEFE5D16F309E400216A68 /* PhotoMoment.h */,
 				2BFEFE5E16F309E400216A68 /* PhotoMoment.m */,
-				2BFEFE6C16F3F09000216A68 /* 31-circle-x.png */,
-				2BFEFE6D16F3F09000216A68 /* 21-circle-east.png */,
 				2B46C92C16E74C1900C8B966 /* MapViewController.h */,
 				2B46C92D16E74C1900C8B966 /* MapViewController.m */,
 				2BFEFE5A16F3071400216A68 /* ImageViewController.h */,
@@ -224,6 +204,8 @@
 		2B46C90016E6B5D900C8B966 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				2BFEFE7616F3F39300216A68 /* circle-x@2x.png */,
+				2BFEFE7716F3F39300216A68 /* circle-east@2x.png */,
 				2BFEFE6016F3391800216A68 /* 86-camera.png */,
 				2BFEFE6116F3391900216A68 /* 103-map.png */,
 				2B46C91716E6B5D900C8B966 /* first.png */,
@@ -304,12 +286,6 @@
 				2BDFD6B716F1E272001B5E3D /* FacebookSDKResources.bundle in Resources */,
 				2BFEFE6216F3391A00216A68 /* 86-camera.png in Resources */,
 				2BFEFE6316F3391A00216A68 /* 103-map.png in Resources */,
-				2BFEFE6616F33A3700216A68 /* 86-camera@2x.png in Resources */,
-				2BFEFE6716F33A3700216A68 /* 103-map@2x.png in Resources */,
-				2BFEFE6E16F3F09100216A68 /* 31-circle-x.png in Resources */,
-				2BFEFE6F16F3F09100216A68 /* 21-circle-east.png in Resources */,
-				2BFEFE7416F3F15400216A68 /* 21-circle-east@2x.png in Resources */,
-				2BFEFE7516F3F15400216A68 /* 31-circle-x@2x.png in Resources */,
 				2BFEFE7816F3F39400216A68 /* circle-x@2x.png in Resources */,
 				2BFEFE7916F3F39400216A68 /* circle-east@2x.png in Resources */,
 			);

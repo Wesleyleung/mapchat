@@ -66,12 +66,15 @@
 }
 
 -(void)viewDidDisappear:(BOOL)animated {
+    self.mapView.showsUserLocation = NO;
 //    [self.locationManager stopUpdatingLocation];
 }
 
 - (void)logoutButtonPressed:(id)sender {
-    [PFUser logOut];
-    [self.navigationController popViewControllerAnimated:YES];
+    [super logoutButtonPressed];
+    
+//    [PFUser logOut];
+//    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)checkInButtonPressed:(id)sender {

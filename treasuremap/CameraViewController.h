@@ -8,14 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import <MobileCoreServices/MobileCoreServices.h>
+#import <CoreLocation/CoreLocation.h>
 #import "Parse/Parse.h"
 
-@interface CameraViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
-{
-    UIImage *finalImage;
-}
+@interface CameraViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, CLLocationManagerDelegate>
 
-
+@property (nonatomic, strong) CLLocationManager *locationManager;
 //- (IBAction)openCamera:(id)sender;
 //- (IBAction)openCameraRoll:(id)sender;
 

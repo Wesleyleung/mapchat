@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2B40DE1C16EBECF600A87B22 /* PhotoPreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B40DE1B16EBECF600A87B22 /* PhotoPreviewViewController.m */; };
 		2B40DE1E16EBFFA500A87B22 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B40DE1D16EBFFA500A87B22 /* MapKit.framework */; };
 		2B46C8FA16E6B5D900C8B966 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B46C8F916E6B5D900C8B966 /* UIKit.framework */; };
 		2B46C8FC16E6B5D900C8B966 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B46C8FB16E6B5D900C8B966 /* Foundation.framework */; };
@@ -39,11 +38,25 @@
 		2B6B78B816E88042006A8FA3 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B6B78B716E88042006A8FA3 /* CFNetwork.framework */; };
 		2B6B78BA16E88047006A8FA3 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B6B78B916E88047006A8FA3 /* AdSupport.framework */; };
 		2B6B78BC16E8804C006A8FA3 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B6B78BB16E8804C006A8FA3 /* Accounts.framework */; };
+		2BDFD6B516F1E21B001B5E3D /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BDFD6B416F1E21B001B5E3D /* FacebookSDK.framework */; };
+		2BDFD6B716F1E272001B5E3D /* FacebookSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2BDFD6B616F1E272001B5E3D /* FacebookSDKResources.bundle */; };
+		2BDFD6BA16F1E493001B5E3D /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BDFD6B916F1E492001B5E3D /* LoginViewController.m */; };
+		2BFEFE5916F2739A00216A68 /* SharedDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BFEFE5816F2739A00216A68 /* SharedDataManager.m */; };
+		2BFEFE5C16F3071500216A68 /* ImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BFEFE5B16F3071400216A68 /* ImageViewController.m */; };
+		2BFEFE5F16F309E400216A68 /* PhotoMoment.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BFEFE5E16F309E400216A68 /* PhotoMoment.m */; };
+		2BFEFE6216F3391A00216A68 /* 86-camera.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BFEFE6016F3391800216A68 /* 86-camera.png */; };
+		2BFEFE6316F3391A00216A68 /* 103-map.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BFEFE6116F3391900216A68 /* 103-map.png */; };
+		2BFEFE6616F33A3700216A68 /* 86-camera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BFEFE6416F33A3700216A68 /* 86-camera@2x.png */; };
+		2BFEFE6716F33A3700216A68 /* 103-map@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BFEFE6516F33A3700216A68 /* 103-map@2x.png */; };
+		2BFEFE6E16F3F09100216A68 /* 31-circle-x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BFEFE6C16F3F09000216A68 /* 31-circle-x.png */; };
+		2BFEFE6F16F3F09100216A68 /* 21-circle-east.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BFEFE6D16F3F09000216A68 /* 21-circle-east.png */; };
+		2BFEFE7416F3F15400216A68 /* 21-circle-east@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BFEFE7216F3F15300216A68 /* 21-circle-east@2x.png */; };
+		2BFEFE7516F3F15400216A68 /* 31-circle-x@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BFEFE7316F3F15400216A68 /* 31-circle-x@2x.png */; };
+		2BFEFE7816F3F39400216A68 /* circle-x@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BFEFE7616F3F39300216A68 /* circle-x@2x.png */; };
+		2BFEFE7916F3F39400216A68 /* circle-east@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BFEFE7716F3F39300216A68 /* circle-east@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2B40DE1A16EBECF600A87B22 /* PhotoPreviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoPreviewViewController.h; sourceTree = "<group>"; };
-		2B40DE1B16EBECF600A87B22 /* PhotoPreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoPreviewViewController.m; sourceTree = "<group>"; };
 		2B40DE1D16EBFFA500A87B22 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		2B46C8F616E6B5D900C8B966 /* treasuremap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = treasuremap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B46C8F916E6B5D900C8B966 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -81,6 +94,26 @@
 		2B6B78B716E88042006A8FA3 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		2B6B78B916E88047006A8FA3 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		2B6B78BB16E8804C006A8FA3 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		2BDFD6B416F1E21B001B5E3D /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
+		2BDFD6B616F1E272001B5E3D /* FacebookSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FacebookSDKResources.bundle; path = ../../Documents/FacebookSDK/FacebookSDK.framework/Versions/A/Resources/FacebookSDKResources.bundle; sourceTree = "<group>"; };
+		2BDFD6B816F1E492001B5E3D /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		2BDFD6B916F1E492001B5E3D /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		2BFEFE5716F2739A00216A68 /* SharedDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedDataManager.h; sourceTree = "<group>"; };
+		2BFEFE5816F2739A00216A68 /* SharedDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharedDataManager.m; sourceTree = "<group>"; };
+		2BFEFE5A16F3071400216A68 /* ImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageViewController.h; sourceTree = "<group>"; };
+		2BFEFE5B16F3071400216A68 /* ImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageViewController.m; sourceTree = "<group>"; };
+		2BFEFE5D16F309E400216A68 /* PhotoMoment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoMoment.h; sourceTree = "<group>"; };
+		2BFEFE5E16F309E400216A68 /* PhotoMoment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoMoment.m; sourceTree = "<group>"; };
+		2BFEFE6016F3391800216A68 /* 86-camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "86-camera.png"; sourceTree = "<group>"; };
+		2BFEFE6116F3391900216A68 /* 103-map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "103-map.png"; sourceTree = "<group>"; };
+		2BFEFE6416F33A3700216A68 /* 86-camera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "86-camera@2x.png"; sourceTree = "<group>"; };
+		2BFEFE6516F33A3700216A68 /* 103-map@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "103-map@2x.png"; sourceTree = "<group>"; };
+		2BFEFE6C16F3F09000216A68 /* 31-circle-x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "31-circle-x.png"; sourceTree = "<group>"; };
+		2BFEFE6D16F3F09000216A68 /* 21-circle-east.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "21-circle-east.png"; sourceTree = "<group>"; };
+		2BFEFE7216F3F15300216A68 /* 21-circle-east@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "21-circle-east@2x.png"; sourceTree = "<group>"; };
+		2BFEFE7316F3F15400216A68 /* 31-circle-x@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "31-circle-x@2x.png"; sourceTree = "<group>"; };
+		2BFEFE7616F3F39300216A68 /* circle-x@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "circle-x@2x.png"; path = "../circle-x@2x.png"; sourceTree = "<group>"; };
+		2BFEFE7716F3F39300216A68 /* circle-east@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "circle-east@2x.png"; path = "../circle-east@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +139,7 @@
 				2B46C8FA16E6B5D900C8B966 /* UIKit.framework in Frameworks */,
 				2B46C8FC16E6B5D900C8B966 /* Foundation.framework in Frameworks */,
 				2B6B78A416E87F67006A8FA3 /* Parse.framework in Frameworks */,
+				2BDFD6B516F1E21B001B5E3D /* FacebookSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,6 +166,8 @@
 		2B46C8F816E6B5D900C8B966 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2BDFD6B616F1E272001B5E3D /* FacebookSDKResources.bundle */,
+				2BDFD6B416F1E21B001B5E3D /* FacebookSDK.framework */,
 				2B40DE1D16EBFFA500A87B22 /* MapKit.framework */,
 				2B6B78BB16E8804C006A8FA3 /* Accounts.framework */,
 				2B6B78B916E88047006A8FA3 /* AdSupport.framework */,
@@ -157,15 +193,29 @@
 		2B46C8FF16E6B5D900C8B966 /* treasuremap */ = {
 			isa = PBXGroup;
 			children = (
+				2BFEFE7616F3F39300216A68 /* circle-x@2x.png */,
+				2BFEFE7716F3F39300216A68 /* circle-east@2x.png */,
 				2B46C90816E6B5D900C8B966 /* AppDelegate.h */,
 				2B46C90916E6B5D900C8B966 /* AppDelegate.m */,
+				2BDFD6B816F1E492001B5E3D /* LoginViewController.h */,
+				2BDFD6B916F1E492001B5E3D /* LoginViewController.m */,
 				2B46C91116E6B5D900C8B966 /* MainStoryboard.storyboard */,
-				2B40DE1A16EBECF600A87B22 /* PhotoPreviewViewController.h */,
-				2B40DE1B16EBECF600A87B22 /* PhotoPreviewViewController.m */,
+				2BFEFE7216F3F15300216A68 /* 21-circle-east@2x.png */,
+				2BFEFE7316F3F15400216A68 /* 31-circle-x@2x.png */,
+				2BFEFE6416F33A3700216A68 /* 86-camera@2x.png */,
+				2BFEFE6516F33A3700216A68 /* 103-map@2x.png */,
 				2B46C92916E737BD00C8B966 /* CameraViewController.h */,
 				2B46C92A16E737BD00C8B966 /* CameraViewController.m */,
+				2BFEFE5716F2739A00216A68 /* SharedDataManager.h */,
+				2BFEFE5816F2739A00216A68 /* SharedDataManager.m */,
+				2BFEFE5D16F309E400216A68 /* PhotoMoment.h */,
+				2BFEFE5E16F309E400216A68 /* PhotoMoment.m */,
+				2BFEFE6C16F3F09000216A68 /* 31-circle-x.png */,
+				2BFEFE6D16F3F09000216A68 /* 21-circle-east.png */,
 				2B46C92C16E74C1900C8B966 /* MapViewController.h */,
 				2B46C92D16E74C1900C8B966 /* MapViewController.m */,
+				2BFEFE5A16F3071400216A68 /* ImageViewController.h */,
+				2BFEFE5B16F3071400216A68 /* ImageViewController.m */,
 				2B46C90016E6B5D900C8B966 /* Supporting Files */,
 			);
 			path = treasuremap;
@@ -174,6 +224,8 @@
 		2B46C90016E6B5D900C8B966 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				2BFEFE6016F3391800216A68 /* 86-camera.png */,
+				2BFEFE6116F3391900216A68 /* 103-map.png */,
 				2B46C91716E6B5D900C8B966 /* first.png */,
 				2B46C91916E6B5D900C8B966 /* first@2x.png */,
 				2B46C91E16E6B5D900C8B966 /* second.png */,
@@ -249,6 +301,17 @@
 				2B46C91A16E6B5D900C8B966 /* first@2x.png in Resources */,
 				2B46C91F16E6B5D900C8B966 /* second.png in Resources */,
 				2B46C92116E6B5D900C8B966 /* second@2x.png in Resources */,
+				2BDFD6B716F1E272001B5E3D /* FacebookSDKResources.bundle in Resources */,
+				2BFEFE6216F3391A00216A68 /* 86-camera.png in Resources */,
+				2BFEFE6316F3391A00216A68 /* 103-map.png in Resources */,
+				2BFEFE6616F33A3700216A68 /* 86-camera@2x.png in Resources */,
+				2BFEFE6716F33A3700216A68 /* 103-map@2x.png in Resources */,
+				2BFEFE6E16F3F09100216A68 /* 31-circle-x.png in Resources */,
+				2BFEFE6F16F3F09100216A68 /* 21-circle-east.png in Resources */,
+				2BFEFE7416F3F15400216A68 /* 21-circle-east@2x.png in Resources */,
+				2BFEFE7516F3F15400216A68 /* 31-circle-x@2x.png in Resources */,
+				2BFEFE7816F3F39400216A68 /* circle-x@2x.png in Resources */,
+				2BFEFE7916F3F39400216A68 /* circle-east@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,7 +326,10 @@
 				2B46C90A16E6B5D900C8B966 /* AppDelegate.m in Sources */,
 				2B46C92B16E737BD00C8B966 /* CameraViewController.m in Sources */,
 				2B46C92E16E74C1900C8B966 /* MapViewController.m in Sources */,
-				2B40DE1C16EBECF600A87B22 /* PhotoPreviewViewController.m in Sources */,
+				2BDFD6BA16F1E493001B5E3D /* LoginViewController.m in Sources */,
+				2BFEFE5916F2739A00216A68 /* SharedDataManager.m in Sources */,
+				2BFEFE5C16F3071500216A68 /* ImageViewController.m in Sources */,
+				2BFEFE5F16F309E400216A68 /* PhotoMoment.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -351,10 +417,15 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/../../Documents/FacebookSDK\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "treasuremap/treasuremap-Prefix.pch";
 				INFOPLIST_FILE = "treasuremap/treasuremap-Info.plist";
+				OTHER_LDFLAGS = (
+					"-lsqlite3.0",
+					"-ObjC",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -366,10 +437,15 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/../../Documents/FacebookSDK\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "treasuremap/treasuremap-Prefix.pch";
 				INFOPLIST_FILE = "treasuremap/treasuremap-Info.plist";
+				OTHER_LDFLAGS = (
+					"-lsqlite3.0",
+					"-ObjC",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

@@ -7,6 +7,8 @@
 //
 
 #import "CameraViewController.h"
+#import "SharedDataManager.h"
+#import <QuartzCore/QuartzCore.h>
 
 
 @interface CameraViewController ()
@@ -14,95 +16,118 @@
 
 @property (weak, nonatomic) UILabel *photoNotes;
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet UITextField *textField;
+@property (weak, nonatomic) IBOutlet UIButton *cancelButton;
+@property (weak, nonatomic) IBOutlet UIButton *sendButton;
 
 
 @end
 
 @implementation CameraViewController
+@synthesize locationManager = _locationManager;
+
+static const CGFloat kJPEGCompressionQuality = 0.7;
+
+
 
 @synthesize imageView;
 
 
-//- (IBAction)openCamera:(id)sender {
-//    if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-//        
-//        UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
-//        
-//        imagePicker.delegate = self;
-//        
-//        imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
-//        imagePicker.mediaTypes = @[(NSString *) kUTTypeImage];
-//        
-//        imagePicker.allowsEditing = NO;
-//        [self presentViewController: imagePicker
-//                           animated: YES completion:nil];
-//        _newMedia = YES;
-//        
-//    }
-//}
-
-- (IBAction)photoTapped:(id)sender {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Password" message:@"Enter your password:" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Ok", nil];
-    alertView.alertViewStyle = UIAlertViewStyleSecureTextInput;
-    UITextField *passwordTextField = [alertView textFieldAtIndex:0];
-    [alertView show];
-    
-    
+- (CLLocationManager *)locationManager {
+    if (!_locationManager) {
+        _locationManager = [[CLLocationManager alloc] init];
+        _locationManager.delegate = self;
+        _locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation;
+        _locationManager.distanceFilter = 100;
+    }
+    return _locationManager;
 }
 
-- (IBAction)openCameraRoll:(id)sender {
-    if ([UIImagePickerController isSourceTypeAvailable:
-         UIImagePickerControllerSourceTypeSavedPhotosAlbum])
-    {
-        UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
-        imagePicker.delegate = self;
-        imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-        imagePicker.mediaTypes = @[(NSString *) kUTTypeImage];
-        imagePicker.allowsEditing = NO;
-        [self presentViewController:imagePicker
-                           animated:YES completion:nil];
+
+- (IBAction)sendPressed:(id)sender {
+    SharedDataManager *manager = [[SharedDataManager alloc] init];
+    NSData *imageData = UIImageJPEGRepresentation(self.imageView.image, kJPEGCompressionQuality);
+    
+    CLLocation *location = self.locationManager.location;
+    [manager saveMomentDataToServer:imageData text:self.textField.text location:location];
+
+    [self dismissViewControllerAnimated:YES completion:nil];
+    self.tabBarController.selectedViewController = [self.tabBarController.viewControllers objectAtIndex:0];
+}
+
+- (IBAction)cancelPressed:(id)sender {
+    self.imageView.image = nil;
+    self.textField.hidden = YES;
+
+    self.textField.text = @"";
+    [self openCamera];
+}
+
+- (IBAction)photoTapped:(id)sender {
+    self.textField.hidden = NO;
+    if ([self.textField isFirstResponder]) {
+        [self.textField resignFirstResponder];
+        [[self view] endEditing:YES];
+    } else {
+        [self.textField becomeFirstResponder];
     }
 }
 
+- (IBAction)textFieldTapped:(id)sender {
+    
+}
+
+
+#pragma mark UITextFieldDelegate
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    if(textField.text.length == 0) {
+        textField.hidden = YES;
+    }
+}
+
+//should cut length of true string
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    CGFloat curWidth = [textField.text sizeWithFont:[UIFont fontWithName:@"Helvetica-Light" size:25.0]].width;
+    CGFloat newWidth = [string sizeWithFont:[UIFont fontWithName:@"Helvetica-Light" size:25.0]].width;
+
+    
+    
+    CGFloat newLength = curWidth + newWidth;
+
+    
+    return (newLength > 280.0) ? NO : YES;
+}
+
+
+-(void)hideButtons {
+    self.cancelButton.hidden = YES;
+    self.sendButton.hidden = YES;
+    self.textField.hidden = YES;
+}
+
+-(void)showButtons {
+    self.cancelButton.hidden = NO;
+    self.sendButton.hidden = NO;
+}
 
 #pragma mark UIImagePickerControllerDelegate
+
+-(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    [self dismissViewControllerAnimated:YES completion:nil];
+    self.tabBarController.selectedViewController = [self.tabBarController.viewControllers objectAtIndex:0];
+}
 
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     
-    finalImage = [info objectForKey:UIImagePickerControllerOriginalImage];
-    [self.imageView setImage:finalImage];
+    [self.imageView setImage:[info objectForKey:UIImagePickerControllerOriginalImage]];
+    [self showButtons];
     [self dismissViewControllerAnimated:YES completion:nil];
-    
-    
-
-//      NSString *mediaType = info[UIImagePickerControllerMediaType];
-//    
-//    if ([mediaType isEqualToString:(NSString *)kUTTypeImage]) {
-//        UIImage *image = info[UIImagePickerControllerOriginalImage];
-//        
-//      
-//        
-//        [self.imageView setImage:image];
-//        _imageView.image = image;
-//        
-//        [self performSegueWithIdentifier: @"Show Photo" sender: self];
-//        
-//
-//        //if new, save to photo album;
-////        if (_newMedia) {
-////            UIImageWriteToSavedPhotosAlbum(image,
-////                                           self,
-////                                           @selector(image:finishedSavingWithError:contextInfo:),
-////                                           nil);
-////        }
-//        //load the next view
-//        
-//    
-//        
-//        //
-//    }
-
 }
 
 -(void)image:(UIImage *)image finishedSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
@@ -119,46 +144,20 @@
 }
 
 
-//- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
-//{
-//    return self.imageView;
-//}
-
-
 -(void)openCamera {
-        if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+    [self hideButtons];
+    if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
             
-            UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+        UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
             
-//            imagePicker.delegate = self;
-            [imagePicker setSourceType:UIImagePickerControllerSourceTypeCamera];
-            imagePicker.mediaTypes = @[(NSString *) kUTTypeImage];
+        [imagePicker setSourceType:UIImagePickerControllerSourceTypeCamera];
+        imagePicker.mediaTypes = @[(NSString *) kUTTypeImage];
             
-            imagePicker.allowsEditing = NO;
-            [imagePicker setDelegate:self];
-            [self presentViewController: imagePicker
+        imagePicker.allowsEditing = NO;
+        [imagePicker setDelegate:self];
+        [self presentViewController: imagePicker
                                animated: YES completion:nil];
-            
         }
-}
-
-
-//prepare for segue
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    
-    if ([segue.identifier isEqualToString:@"Show Photo"]) {
-        if ([segue.destinationViewController respondsToSelector:@selector(setPhoto:)]) {
-            
-            
-            
-            
-            //            [segue.destinationViewController performSelector:@selector(setPhoto:) withObject:self.imageView.image];
-            //                [segue.destinationViewController performSelector:@selector(setImageID:) withObject:photo.unique];
-            //                [segue.destinationViewController setTitle:photo.title];
-            
-        }
-    }
 }
 
 
@@ -167,11 +166,14 @@
     if(!self.imageView.image) {
         [self openCamera];
     }
+    [self.locationManager startUpdatingLocation];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:(BOOL)animated];    // Call the super class implementation.
+    self.textField.text = @"";
     self.imageView.image = nil;
+    [self.locationManager stopUpdatingLocation];
 }
 
 - (UIImageView *)imageView
@@ -180,33 +182,14 @@
     return imageView;
 }
 
+
 - (void)viewDidLoad
 {
-    
-//    PFObject *testObject = [PFObject objectWithClassName:@"Receip"];
-//    [testObject setObject:@"bar" forKey:@"foo"];
-//    [testObject save];
-    
-//    PFObject *geoCache = [PFObject objectWithClassName:@"treasure"];
-//    [geoCache setObject:@"url for image " forKey:@"imageURL"];
-//    [geoCache setObject:@"username for image " forKey:@"username"];
-//    [geoCache setObject:@"latitude " forKey:@"locationlat"];
-//    [geoCache setObject:@"longitude " forKey:@"locationlong"];
-//    [geoCache setObject:@"foursquare location object " forKey:@"foursquareLocation"];
-//    
-//    
-//    [geoCache setObject:@"" forKey:@""];
-//    
-//    
-//    [geoCache save];
-    
-    
     [super viewDidLoad];
+    self.textField.delegate = self;
+//    [self.locationManager startUpdatingLocation];
     
-  
     
-   
-	// Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning

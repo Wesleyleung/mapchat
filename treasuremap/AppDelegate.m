@@ -11,12 +11,29 @@
 
 @implementation AppDelegate
 
+static NSString * const kParseClientKey = @"aIDvZuVQd65RJXh9zn2GvbOqMtX8O9lkxfD4hIjR";
+static NSString * const kParseApplicationId = @"QcELZp4ULCTvsYEymyu7g0iogJYQuzAzcr4ckmkX";
+static NSString * const kFacebookAppId = @"465925590147199";
+
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    [Parse setApplicationId:@"QcELZp4ULCTvsYEymyu7g0iogJYQuzAzcr4ckmkX"
-                  clientKey:@"aIDvZuVQd65RJXh9zn2GvbOqMtX8O9lkxfD4hIjR"];
+    [Parse setApplicationId: kParseApplicationId
+                  clientKey:kParseClientKey];
+    [PFFacebookUtils initializeWithApplicationId:kFacebookAppId];
     return YES;
+}
+
+#pragma mark - URL Handling
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+    return [PFFacebookUtils handleOpenURL:url];
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    return [PFFacebookUtils handleOpenURL:url];
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application

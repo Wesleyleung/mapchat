@@ -8,63 +8,84 @@
 
 #import "SharedDataManager.h"
 #import <Parse/Parse.h>
+#import "MapViewController.h"
 
 @implementation SharedDataManager
 
 - (IBAction)refresh:(id)sender {
     NSLog(@"Photo saved to Parse!");
+    [MapViewController photoLoadFinished];
 }
 
--(void)saveMomentDataToServer:(NSData *)imageData text:(NSString *)text
-                     location:(CLLocation*)location {
+- (void)saveMomentDataToServer:(NSData *)imageData text:(NSString *)text
+                     location:(CLLocation*)location
+                        seconds: (NSInteger)seconds{
     
-    PFFile *imageFile = [PFFile fileWithName:@"Image.jpg" data:imageData];
+    PFFile *imageFile = [PFFile fileWithName:@"image.jpg" data:imageData];
     
-    // Save PFFile
     [imageFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (!error) {
-
-            
-            //    PFObject *testObject = [PFObject objectWithClassName:@"Receip"];
-            //    [testObject setObject:@"bar" forKey:@"foo"];
-            //    [testObject save];
-            
-            
-            // Create a PFObject around a PFFile and associate it with the current user
             PFObject *photoMoment = [PFObject objectWithClassName:@"moment"];
             [photoMoment setObject:imageFile forKey:@"imageFile"];
             [photoMoment setObject:text forKey:@"imageText"];
-            
+            [photoMoment setObject:[NSNumber numberWithInteger:seconds] forKey:@"seconds"];
             PFGeoPoint *geoPoint = [PFGeoPoint geoPointWithLatitude:location.coordinate.latitude
                                                           longitude:location.coordinate.longitude];
-            
+         
             [photoMoment setObject:geoPoint forKey:@"location"];
-            // Set the access control list to current user for security purposes
-            photoMoment.ACL = [PFACL ACLWithUser:[PFUser currentUser]];
-            
+   
             PFUser *user = [PFUser currentUser];
             
        
             [photoMoment setObject:user forKey:@"user"];
             [photoMoment setObject:[user objectForKey:@"username"] forKey:@"username"];
-            
             [photoMoment saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                 if (!error) {
                     [self refresh:nil];
                 }
                 else{
-                    // Log details of the failure
                     NSLog(@"Error: %@ %@", error, [error userInfo]);
                 }
             }];
         } else{
-            // Log details of the failure
             NSLog(@"Error: %@ %@", error, [error userInfo]);
         }
     }];
+}
+
+
+//Uses NSUserdefaults to store basic set of moments IDs that the user has already fetched. This is meant to be a lightweight way to check whether a pin has already been placed on the map. It gets cleared when the user logs out. 
++ (void)storeMomentId:(NSString *)key {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSDictionary *moments = [defaults objectForKey:@"momentIDs"];
     
-    
-    
+    if(!moments) {
+        moments = [NSDictionary dictionaryWithObject:@"YES" forKey:key];
+    } else {
+        NSMutableDictionary *tempMoments = [moments mutableCopy];
+        [tempMoments setObject:@"YES" forKey:key];
+        moments = [NSDictionary dictionaryWithDictionary:tempMoments];
+    }
+    [defaults setObject:moments forKey:@"momentIDs"];
+    [defaults synchronize];
+}
+
+
++ (BOOL)doesMomentIdExist:(NSString *)key {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSDictionary *moments = [defaults objectForKey:@"momentIDs"];
+    if(!moments) {
+        return NO;
+    } else if ([moments objectForKey:key]) {
+        return YES;
+    }
+    return NO;
+}
+
++ (void)clearMomentIds {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults removeObjectForKey:@"momentIDs"];
+    [defaults synchronize];
 }
 
 @end

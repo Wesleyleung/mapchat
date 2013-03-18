@@ -16,7 +16,7 @@
 @implementation LoginViewController
 
 
--(void)viewDidAppear:(BOOL)animated {
+- (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     if (![PFUser currentUser]) {
         [self presentLoginView];
@@ -24,7 +24,6 @@
         if (![[PFUser currentUser] objectForKey:@"first_name"]) {
             [self setupNewUserAccount];
         }
-//        [self setupViewForUser];
     }
 }
 
@@ -52,11 +51,11 @@
 
 - (void)setupViewForUser {
     PFUser *curUser = [PFUser currentUser];
-    if (![curUser objectForKey:@"first_name"]) {
+    if (![curUser objectForKey:@"username"]) {
         return;
     }
-    //force seque
-    [self performSegueWithIdentifier: @"login" sender: self];
+//    //force seque
+//    [self performSegueWithIdentifier: @"login" sender: self];
  
 }
 
@@ -67,6 +66,9 @@
     loginVC.delegate = self;
     loginVC.signUpController.delegate = self;
     loginVC.fields = PFLogInFieldsFacebook;
+    [loginVC.logInView setLogo:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo.png"]]];
+    
+    [loginVC setTitle:@"MapChat"];
     [self.navigationController presentViewController:loginVC animated:YES completion:nil];
 }
 

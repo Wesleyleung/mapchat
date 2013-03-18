@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "Parse/Parse.h"
+#import "SharedDataManager.h"
 
 @implementation AppDelegate
 
@@ -18,10 +19,11 @@ static NSString * const kFacebookAppId = @"465925590147199";
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
     [Parse setApplicationId: kParseApplicationId
                   clientKey:kParseClientKey];
     [PFFacebookUtils initializeWithApplicationId:kFacebookAppId];
+    //Clear moments on launch and on exit (both in case of crash or a method wasn't executed correctly.
+    [SharedDataManager clearMomentIds];
     return YES;
 }
 
@@ -60,6 +62,8 @@ static NSString * const kFacebookAppId = @"465925590147199";
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
+    
+    [SharedDataManager clearMomentIds];
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 

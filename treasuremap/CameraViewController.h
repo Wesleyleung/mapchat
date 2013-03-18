@@ -11,11 +11,10 @@
 #import <CoreLocation/CoreLocation.h>
 #import "Parse/Parse.h"
 
-@interface CameraViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, CLLocationManagerDelegate>
+@interface CameraViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, UIPickerViewDelegate, UIActionSheetDelegate, CLLocationManagerDelegate>
 
 @property (nonatomic, strong) CLLocationManager *locationManager;
-//- (IBAction)openCamera:(id)sender;
-//- (IBAction)openCameraRoll:(id)sender;
+
 
 
 

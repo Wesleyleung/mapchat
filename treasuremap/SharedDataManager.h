@@ -15,6 +15,14 @@
 
 - (void)saveMomentDataToServer:(NSData *)imageData
                           text:(NSString *)text
-                        location: (CLLocation *) location;
+                      location: (CLLocation *) location
+                       seconds:(NSInteger)seconds;
+
++(void)storeMomentId:(NSString *)key;
++(BOOL)doesMomentIdExist:(NSString*)key;
++(void)clearMomentIds;
+
+
+
 
 @end

@@ -14,14 +14,8 @@
 @synthesize title;
 @synthesize subtitle;
 @synthesize objectID;
+@synthesize timer;
 
-
-//- (CLLocationCoordinate2D)coordinate {
-//    CLLocationCoordinate2D coordinate;
-//    coordinate.latitude = [self.latitude doubleValue];
-//    coordinate.longitude = [self.longitude doubleValue];
-//    return coordinate;
-//}
 
 - (id)initWithParseObject: (PFObject*)object {
     self = [super init];
@@ -29,10 +23,9 @@
         objectID = object.objectId;
         title = [object objectForKey:@"username"];
         subtitle = [object objectForKey:@"imageText"];
+        timer = [object objectForKey:@"imageText"];
         PFGeoPoint *geoPoint = [object objectForKey:@"location"];
         coordinate = CLLocationCoordinate2DMake(geoPoint.latitude, geoPoint.longitude);
-//        photographer = [object objectForKey:@""];
-        
     }
     return self;
 }

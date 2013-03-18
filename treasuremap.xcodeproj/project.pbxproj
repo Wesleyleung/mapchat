@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B0E310E16F66371007239AE /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B0E310D16F66371007239AE /* logo.png */; };
 		2B40DE1E16EBFFA500A87B22 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B40DE1D16EBFFA500A87B22 /* MapKit.framework */; };
 		2B46C8FA16E6B5D900C8B966 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B46C8F916E6B5D900C8B966 /* UIKit.framework */; };
 		2B46C8FC16E6B5D900C8B966 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B46C8FB16E6B5D900C8B966 /* Foundation.framework */; };
@@ -51,6 +52,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2B0E310D16F66371007239AE /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		2B40DE1D16EBFFA500A87B22 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		2B46C8F616E6B5D900C8B966 /* treasuremap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = treasuremap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B46C8F916E6B5D900C8B966 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -134,6 +136,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2B0E311316F66E5D007239AE /* PhotoMomentModel */ = {
+			isa = PBXGroup;
+			children = (
+				2BFEFE5D16F309E400216A68 /* PhotoMoment.h */,
+				2BFEFE5E16F309E400216A68 /* PhotoMoment.m */,
+			);
+			name = PhotoMomentModel;
+			sourceTree = "<group>";
+		};
+		2B0E311416F66E75007239AE /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				2BDFD6B816F1E492001B5E3D /* LoginViewController.h */,
+				2BDFD6B916F1E492001B5E3D /* LoginViewController.m */,
+				2B46C92916E737BD00C8B966 /* CameraViewController.h */,
+				2B46C92A16E737BD00C8B966 /* CameraViewController.m */,
+				2B46C92C16E74C1900C8B966 /* MapViewController.h */,
+				2B46C92D16E74C1900C8B966 /* MapViewController.m */,
+				2BFEFE5A16F3071400216A68 /* ImageViewController.h */,
+				2BFEFE5B16F3071400216A68 /* ImageViewController.m */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
 		2B46C8ED16E6B5D800C8B966 = {
 			isa = PBXGroup;
 			children = (
@@ -181,21 +207,13 @@
 		2B46C8FF16E6B5D900C8B966 /* treasuremap */ = {
 			isa = PBXGroup;
 			children = (
-				2B46C90816E6B5D900C8B966 /* AppDelegate.h */,
-				2B46C90916E6B5D900C8B966 /* AppDelegate.m */,
-				2BDFD6B816F1E492001B5E3D /* LoginViewController.h */,
-				2BDFD6B916F1E492001B5E3D /* LoginViewController.m */,
+				2B0E311316F66E5D007239AE /* PhotoMomentModel */,
+				2B0E311416F66E75007239AE /* ViewControllers */,
 				2B46C91116E6B5D900C8B966 /* MainStoryboard.storyboard */,
-				2B46C92916E737BD00C8B966 /* CameraViewController.h */,
-				2B46C92A16E737BD00C8B966 /* CameraViewController.m */,
 				2BFEFE5716F2739A00216A68 /* SharedDataManager.h */,
 				2BFEFE5816F2739A00216A68 /* SharedDataManager.m */,
-				2BFEFE5D16F309E400216A68 /* PhotoMoment.h */,
-				2BFEFE5E16F309E400216A68 /* PhotoMoment.m */,
-				2B46C92C16E74C1900C8B966 /* MapViewController.h */,
-				2B46C92D16E74C1900C8B966 /* MapViewController.m */,
-				2BFEFE5A16F3071400216A68 /* ImageViewController.h */,
-				2BFEFE5B16F3071400216A68 /* ImageViewController.m */,
+				2B46C90816E6B5D900C8B966 /* AppDelegate.h */,
+				2B46C90916E6B5D900C8B966 /* AppDelegate.m */,
 				2B46C90016E6B5D900C8B966 /* Supporting Files */,
 			);
 			path = treasuremap;
@@ -204,6 +222,7 @@
 		2B46C90016E6B5D900C8B966 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				2B0E310D16F66371007239AE /* logo.png */,
 				2BFEFE7616F3F39300216A68 /* circle-x@2x.png */,
 				2BFEFE7716F3F39300216A68 /* circle-east@2x.png */,
 				2BFEFE6016F3391800216A68 /* 86-camera.png */,
@@ -288,6 +307,7 @@
 				2BFEFE6316F3391A00216A68 /* 103-map.png in Resources */,
 				2BFEFE7816F3F39400216A68 /* circle-x@2x.png in Resources */,
 				2BFEFE7916F3F39400216A68 /* circle-east@2x.png in Resources */,
+				2B0E310E16F66371007239AE /* logo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

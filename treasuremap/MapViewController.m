@@ -9,41 +9,38 @@
 #import "MapViewController.h"
 #import "LoginViewController.h"
 #import "PhotoMoment.h"
+#import "SharedDataManager.h"
 
 
-@interface MapViewController () 
+@interface MapViewController ()
 
-//@property (strong, nonatomic) CLLocationManager *locationManager;
-//@property (strong, nonatomic) CLLocation *currentLocation;
+
 @property (nonatomic, strong) IBOutlet MKMapView *mapView;
 @property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
 
+@property (weak, nonatomic) IBOutlet UILabel *photoSavedNotification;
+@property (strong, nonatomic) SharedDataManager *manager;
+@property (strong, nonatomic) PhotoMoment *pinToRemove;
 @end
 
 @implementation MapViewController
 
 
-//@synthesize locationManager = _locationManager;
-//@synthesize currentLocation = _currentLocation;
 @synthesize mapView = _mapView;
 
-
-//- (CLLocationManager *)locationManager {
-//    if (!_locationManager) {
-//        _locationManager = [[CLLocationManager alloc] init];
-//        _locationManager.delegate = self;
-//        _locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation;
-//        _locationManager.distanceFilter = 100;
-//    }
-//    return _locationManager;
-//}
+-(SharedDataManager *)manager {
+    if(!_manager) {
+        _manager = [[SharedDataManager alloc] init];
+    }
+    return _manager;
+}
 
 
 -(void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     MKUserTrackingBarButtonItem *orientButton = [[MKUserTrackingBarButtonItem alloc] initWithMapView:self.mapView];
     
-    UIBarButtonItem *checkinButton = [[UIBarButtonItem alloc] initWithTitle:@"Check In" style:UIBarButtonItemStyleBordered target:self action:@selector(checkInButtonPressed:)];
+    UIBarButtonItem *checkinButton = [[UIBarButtonItem alloc] initWithTitle:@"Update" style:UIBarButtonItemStyleBordered target:self action:@selector(checkInButtonPressed:)];
     UIBarButtonItem *logoutButton = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStyleBordered target:self action:@selector(logoutButtonPressed:)];
     
     CGRect rect = CGRectMake(0, 0, 1, 1);
@@ -58,60 +55,49 @@
     [self.toolbar setItems:@[orientButton, checkinButton, logoutButton] animated: NO];
         
     if([CLLocationManager locationServicesEnabled]) {
-//        [self.locationManager startUpdatingLocation];
         [_mapView setDelegate:self];
         self.mapView.showsUserLocation = YES;
-//        [self goToUserLocation:self.mapView.userLocation];
+    }
+    
+    if(self.pinToRemove) {
+        [self.mapView removeAnnotation:self.pinToRemove];
     }
 }
 
 -(void)viewDidDisappear:(BOOL)animated {
     self.mapView.showsUserLocation = NO;
-//    [self.locationManager stopUpdatingLocation];
 }
 
 - (void)logoutButtonPressed:(id)sender {
+    [self.mapView removeAnnotations:self.mapView.annotations];
+    [SharedDataManager clearMomentIds];
     [super logoutButtonPressed];
-    
-//    [PFUser logOut];
-//    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)checkInButtonPressed:(id)sender {
     [self goToUserLocation:self.mapView.userLocation];
     CGFloat kilometers = 1.0;
-    PFQuery *query = [PFQuery queryWithClassName:@"moment"];
-    [query setLimit:20];     
+    PFQuery *query = [PFQuery queryWithClassName:@"moment"];    
     [query whereKey:@"location"
         nearGeoPoint:[PFGeoPoint geoPointWithLatitude:self.mapView.userLocation.coordinate.latitude
                                             longitude:self.self.mapView.userLocation.coordinate.longitude] withinKilometers:kilometers];
 
-
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (objects.count > 0) {
             for (PFObject *object in objects) {
-                PhotoMoment *pin = [[PhotoMoment alloc] initWithParseObject:object];
-                //check if in cache. If not, add pin.
-                [self.mapView addAnnotation:pin];
+                if(![SharedDataManager doesMomentIdExist:object.objectId]) {
+                    //check if in cache. If not, add pin.
+                    [SharedDataManager storeMomentId:object.objectId];
+                    PhotoMoment *pin = [[PhotoMoment alloc] initWithParseObject:object];
+                    [self.mapView addAnnotation:pin];
+                    
+                }
+               
                 
             }
         }
     
     }];
-    
-}
-
-
-- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
-{
-//    _currentLocation = newLocation;
-//    [_mapView setCenterCoordinate:newLocation.coordinate animated:YES];
-//    if (isNavigating) {
-//        [self updateDistanceDisplay];
-//    } else {
-//        [self.locationManager stopUpdatingLocation];
-//        [self.locationManager performSelector:@selector(startUpdatingLocation) withObject:nil afterDelay:10];
-//    }
 }
 
 
@@ -127,15 +113,27 @@
 }
 
 
-- (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
-{
-//    [self goToUserLocation:userLocation];
+//-(void)photoLoadInProgress {
+//    self.photoSavedNotification.hidden = YES;
+//}
 
++(void)photoLoadFinished {
+//    [NSTimer scheduledTimerWithTimeInterval:2.0
+//                                     target:self
+//                                   selector:@selector(hideLabel:)
+//                                   userInfo:nil
+//                                    repeats:NO];
 }
 
+- (void)hideLabel {
+    self.photoSavedNotification.hidden = YES;
+}
+
+#pragma mark MKMapViewDelegate methods
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
+    //set current location to blue dot
     if (annotation == mapView.userLocation){
-        return nil; //default to blue dot
+        return nil; 
     }
     static NSString *reuseId = @"MapViewController";
     MKPinAnnotationView *view = (MKPinAnnotationView*)[mapView dequeueReusableAnnotationViewWithIdentifier:reuseId];
@@ -159,24 +157,18 @@
 }
 
 
-// sent to the mapView's delegate (us) when any {left,right}CalloutAccessoryView
-//   that is a UIControl is tapped on
-// in this case, we manually segue using the setPhoto: segue
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
     [self performSegueWithIdentifier:@"setPhoto:" sender:view];
 }
 
-
-// prepares a view controller segued to via the setPhoto: segue
-//   by calling setPhoto: with the photo associated with sender
-//   (sender must be an MKAnnotationView whose annotation is a Photo)
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"setPhoto:"]) {
         if ([sender isKindOfClass:[MKAnnotationView class]]) {
-            MKAnnotationView *aView = sender;
-            if ([aView.annotation isKindOfClass:[PhotoMoment class]]) {
-                PhotoMoment *photo = aView.annotation;
+            MKAnnotationView *view = sender;
+            if ([view.annotation isKindOfClass:[PhotoMoment class]]) {
+                PhotoMoment *photo = view.annotation;
+                self.pinToRemove = photo;
                 if ([segue.destinationViewController respondsToSelector:@selector(setPhoto:)]) {
                     [segue.destinationViewController performSelector:@selector(setPhoto:) withObject:photo];
                 }

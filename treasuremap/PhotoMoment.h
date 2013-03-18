@@ -15,14 +15,9 @@
     NSString *title;
     NSString *subtitle;
 }
-//
-//@property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
-//@property (nonatomic, readonly) NSString *photographer;
-//@property (nonatomic, readonly) NSString *subtitle;
-@property (nonatomic, readonly) NSNumber *latitude;
-@property (nonatomic, readonly) NSNumber *longitude;
-@property (nonatomic, readonly) NSString *objectID;
 
+@property (nonatomic, readonly) NSNumber *timer;
+@property (nonatomic, readonly) NSString *objectID;
 
 
 - (id)initWithParseObject: (PFObject*)object;

@@ -13,25 +13,29 @@
 
 @interface CameraViewController ()
 
+- (void)postNotificationPhotoSaved; 
+- (void)useNotificationPhotoSaved:(NSNotification *)notification;
 
-@property (weak, nonatomic) UILabel *photoNotes;
+
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
+@property (strong, nonatomic) UIImagePickerController *imagePicker;
+@property (strong, nonatomic) UIActionSheet *actionSheet;
+@property (strong, nonatomic) UIPickerView *timerPickerView;
+
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 @property (weak, nonatomic) IBOutlet UIButton *cancelButton;
 @property (weak, nonatomic) IBOutlet UIButton *sendButton;
-
+@property (weak, nonatomic) IBOutlet UIButton *timerButton;
 
 @end
 
 @implementation CameraViewController
 @synthesize locationManager = _locationManager;
-
-static const CGFloat kJPEGCompressionQuality = 0.7;
-
-
-
 @synthesize imageView;
 
+static const CGFloat kJPEGCompressionQuality = 0.7;
+static const CGFloat kTextfieldLength = 280.0;
+static NSString *kNotificationName = @"photoSavedNotification";
 
 - (CLLocationManager *)locationManager {
     if (!_locationManager) {
@@ -43,14 +47,20 @@ static const CGFloat kJPEGCompressionQuality = 0.7;
     return _locationManager;
 }
 
+- (UIImageView *)imageView
+{
+    if (!imageView) imageView = [[UIImageView alloc] initWithFrame:CGRectZero];
+    return imageView;
+}
 
 - (IBAction)sendPressed:(id)sender {
     SharedDataManager *manager = [[SharedDataManager alloc] init];
     NSData *imageData = UIImageJPEGRepresentation(self.imageView.image, kJPEGCompressionQuality);
     
     CLLocation *location = self.locationManager.location;
-    [manager saveMomentDataToServer:imageData text:self.textField.text location:location];
-
+    
+    [manager saveMomentDataToServer:imageData text:self.textField.text location:location seconds:[self.timerButton.titleLabel.text integerValue]];
+    [self postNotificationPhotoSaved];
     [self dismissViewControllerAnimated:YES completion:nil];
     self.tabBarController.selectedViewController = [self.tabBarController.viewControllers objectAtIndex:0];
 }
@@ -73,8 +83,17 @@ static const CGFloat kJPEGCompressionQuality = 0.7;
     }
 }
 
-- (IBAction)textFieldTapped:(id)sender {
-    
+-(void)hideButtons {
+    self.cancelButton.hidden = YES;
+    self.sendButton.hidden = YES;
+    self.textField.hidden = YES;
+    self.timerButton.hidden = YES;
+}
+
+-(void)showButtons {
+    self.cancelButton.hidden = NO;
+    self.sendButton.hidden = NO;
+    self.timerButton.hidden = NO;
 }
 
 
@@ -94,26 +113,65 @@ static const CGFloat kJPEGCompressionQuality = 0.7;
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     CGFloat curWidth = [textField.text sizeWithFont:[UIFont fontWithName:@"Helvetica-Light" size:25.0]].width;
     CGFloat newWidth = [string sizeWithFont:[UIFont fontWithName:@"Helvetica-Light" size:25.0]].width;
-
-    
-    
     CGFloat newLength = curWidth + newWidth;
+    return (newLength > kTextfieldLength) ? NO : YES;
+}
 
+#pragma mark UIPickerViewDelegate
+
+- (IBAction)showTimerPicker:(id)sender {
+    self.actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                       delegate:nil cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
     
-    return (newLength > 280.0) ? NO : YES;
+    [self.actionSheet setActionSheetStyle:UIActionSheetStyleBlackTranslucent];
+    
+    CGRect pickerFrame = CGRectMake(0, 0, 0, 0);
+    self.timerPickerView = [[UIPickerView alloc] initWithFrame:pickerFrame];
+    self.timerPickerView.showsSelectionIndicator = YES;
+    self.timerPickerView.delegate = self;
+    
+    for (int i = 1; i <= 10; i++) {
+        if ([self.timerButton.titleLabel.text integerValue] == i) {
+            i -= 1;
+            [self.timerPickerView selectRow:i inComponent:0 animated:NO];
+            break;
+        }
+        
+    }
+    
+    [self.actionSheet addSubview:self.timerPickerView];
+    [self.actionSheet showInView:[[UIApplication sharedApplication] keyWindow]];
+    [self.actionSheet setBounds:CGRectMake(0, 0, 320, 415)];
 }
 
-
--(void)hideButtons {
-    self.cancelButton.hidden = YES;
-    self.sendButton.hidden = YES;
-    self.textField.hidden = YES;
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
+    return 10;
 }
 
--(void)showButtons {
-    self.cancelButton.hidden = NO;
-    self.sendButton.hidden = NO;
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    NSInteger seconds = row + 1;
+    return [NSString stringWithFormat:@"%d seconds", seconds];
 }
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+    NSInteger seconds = row + 1;
+    [self.timerButton setTitle:[NSString stringWithFormat:@"%d",seconds] forState: UIControlStateNormal];
+    [self dismissActionSheet];
+}
+
+-(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
+    return 1;
+}
+
+- (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component {
+    int sectionWidth = 300;
+    return sectionWidth;
+}
+
+-(void)dismissActionSheet {
+    [self.actionSheet dismissWithClickedButtonIndex:0 animated:YES];
+}
+
 
 #pragma mark UIImagePickerControllerDelegate
 
@@ -130,39 +188,24 @@ static const CGFloat kJPEGCompressionQuality = 0.7;
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
--(void)image:(UIImage *)image finishedSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
-{
-    if (error) {
-        UIAlertView *alert = [[UIAlertView alloc]
-                              initWithTitle: @"Save failed"
-                              message: @"Failed to save image"
-                              delegate: nil
-                              cancelButtonTitle:@"OK"
-                              otherButtonTitles:nil];
-        [alert show];
-    }
-}
-
 
 -(void)openCamera {
     [self hideButtons];
     if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
             
-        UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
-            
-        [imagePicker setSourceType:UIImagePickerControllerSourceTypeCamera];
-        imagePicker.mediaTypes = @[(NSString *) kUTTypeImage];
-            
-        imagePicker.allowsEditing = NO;
-        [imagePicker setDelegate:self];
+        self.imagePicker = [[UIImagePickerController alloc] init];
         
-//        [self.view addSubview:imagePicker.view];
-        [self presentViewController: imagePicker
-                               animated: YES completion:nil];
-        }
+        [self.imagePicker setSourceType:UIImagePickerControllerSourceTypeCamera];
+        self.imagePicker.mediaTypes = @[(NSString *) kUTTypeImage];
+        
+        self.imagePicker.allowsEditing = NO;
+        [self.imagePicker setDelegate:self];
+        
+        [self presentViewController: self.imagePicker animated: YES completion:nil];
+    }
 }
 
-
+#pragma mark views
 -(void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     if(!self.imageView.image) {
@@ -172,26 +215,31 @@ static const CGFloat kJPEGCompressionQuality = 0.7;
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:(BOOL)animated];    // Call the super class implementation.
     self.textField.text = @"";
     self.imageView.image = nil;
+    [self hideButtons];
     [self.locationManager stopUpdatingLocation];
+    [super viewDidDisappear:(BOOL)animated];    
 }
 
-- (UIImageView *)imageView
-{
-    if (!imageView) imageView = [[UIImageView alloc] initWithFrame:CGRectZero];
-    return imageView;
+-(void)postNotificationPhotoSaved {
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationName object:nil];
 }
 
+-(void)useNotificationPhotoSaved:(NSNotification *)notification {
+    NSLog(@"Photo saved!");
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.textField.delegate = self;
-//    [self.locationManager startUpdatingLocation];
     
-    
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self
+     selector:@selector(useNotificationPhotoSaved:)
+     name:kNotificationName
+     object: nil];
 }
 
 - (void)didReceiveMemoryWarning

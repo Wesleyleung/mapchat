@@ -13,7 +13,7 @@
 @implementation SharedDataManager
 
 - (IBAction)refresh:(id)sender {
-    NSLog(@"Photo saved to Parse!");
+    NSLog(@"Photo saved to Parse server!");
     [MapViewController photoLoadFinished];
 }
 

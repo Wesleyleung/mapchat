@@ -39,6 +39,9 @@
 		2B6B78B816E88042006A8FA3 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B6B78B716E88042006A8FA3 /* CFNetwork.framework */; };
 		2B6B78BA16E88047006A8FA3 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B6B78B916E88047006A8FA3 /* AdSupport.framework */; };
 		2B6B78BC16E8804C006A8FA3 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B6B78BB16E8804C006A8FA3 /* Accounts.framework */; };
+		2BDB11AA16F6DBB800DC7AF5 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BDB11A916F6DBB800DC7AF5 /* icon.png */; };
+		2BDB11AC16F6DC2F00DC7AF5 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BDB11AB16F6DC2F00DC7AF5 /* icon.png */; };
+		2BDB11AE16F6DC5E00DC7AF5 /* icon-small.png in Resources */ = {isa = PBXBuildFile; fileRef = 2BDB11AD16F6DC5E00DC7AF5 /* icon-small.png */; };
 		2BDFD6B516F1E21B001B5E3D /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BDFD6B416F1E21B001B5E3D /* FacebookSDK.framework */; };
 		2BDFD6B716F1E272001B5E3D /* FacebookSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2BDFD6B616F1E272001B5E3D /* FacebookSDKResources.bundle */; };
 		2BDFD6BA16F1E493001B5E3D /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BDFD6B916F1E492001B5E3D /* LoginViewController.m */; };
@@ -90,6 +93,9 @@
 		2B6B78B716E88042006A8FA3 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		2B6B78B916E88047006A8FA3 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		2B6B78BB16E8804C006A8FA3 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		2BDB11A916F6DBB800DC7AF5 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		2BDB11AB16F6DC2F00DC7AF5 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = ../icon.png; sourceTree = "<group>"; };
+		2BDB11AD16F6DC5E00DC7AF5 /* icon-small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-small.png"; path = "../icon-small.png"; sourceTree = "<group>"; };
 		2BDFD6B416F1E21B001B5E3D /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		2BDFD6B616F1E272001B5E3D /* FacebookSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FacebookSDKResources.bundle; path = ../../Documents/FacebookSDK/FacebookSDK.framework/Versions/A/Resources/FacebookSDKResources.bundle; sourceTree = "<group>"; };
 		2BDFD6B816F1E492001B5E3D /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
@@ -222,6 +228,9 @@
 		2B46C90016E6B5D900C8B966 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				2BDB11AB16F6DC2F00DC7AF5 /* icon.png */,
+				2BDB11AD16F6DC5E00DC7AF5 /* icon-small.png */,
+				2BDB11A916F6DBB800DC7AF5 /* icon.png */,
 				2B0E310D16F66371007239AE /* logo.png */,
 				2BFEFE7616F3F39300216A68 /* circle-x@2x.png */,
 				2BFEFE7716F3F39300216A68 /* circle-east@2x.png */,
@@ -245,9 +254,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		2B46C8F516E6B5D800C8B966 /* treasuremap */ = {
+		2B46C8F516E6B5D800C8B966 /* MapChat */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2B46C92416E6B5D900C8B966 /* Build configuration list for PBXNativeTarget "treasuremap" */;
+			buildConfigurationList = 2B46C92416E6B5D900C8B966 /* Build configuration list for PBXNativeTarget "MapChat" */;
 			buildPhases = (
 				2B46C8F216E6B5D800C8B966 /* Sources */,
 				2B46C8F316E6B5D800C8B966 /* Frameworks */,
@@ -257,7 +266,7 @@
 			);
 			dependencies = (
 			);
-			name = treasuremap;
+			name = MapChat;
 			productName = treasuremap;
 			productReference = 2B46C8F616E6B5D900C8B966 /* treasuremap.app */;
 			productType = "com.apple.product-type.application";
@@ -283,7 +292,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				2B46C8F516E6B5D800C8B966 /* treasuremap */,
+				2B46C8F516E6B5D800C8B966 /* MapChat */,
 			);
 		};
 /* End PBXProject section */
@@ -308,6 +317,9 @@
 				2BFEFE7816F3F39400216A68 /* circle-x@2x.png in Resources */,
 				2BFEFE7916F3F39400216A68 /* circle-east@2x.png in Resources */,
 				2B0E310E16F66371007239AE /* logo.png in Resources */,
+				2BDB11AA16F6DBB800DC7AF5 /* icon.png in Resources */,
+				2BDB11AC16F6DC2F00DC7AF5 /* icon.png in Resources */,
+				2BDB11AE16F6DC5E00DC7AF5 /* icon-small.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -459,7 +471,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2B46C92416E6B5D900C8B966 /* Build configuration list for PBXNativeTarget "treasuremap" */ = {
+		2B46C92416E6B5D900C8B966 /* Build configuration list for PBXNativeTarget "MapChat" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2B46C92516E6B5D900C8B966 /* Debug */,

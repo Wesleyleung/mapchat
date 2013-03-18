@@ -47,6 +47,17 @@ static NSString *kNotificationName = @"photoSavedNotification";
     return _locationManager;
 }
 
+//- (UIImagePickerController *)imagePicker {
+//    if(!_imagePicker) {
+//        _imagePicker = [[UIImagePickerController alloc] init];
+//        [self.imagePicker setSourceType:UIImagePickerControllerSourceTypeCamera];
+//        self.imagePicker.mediaTypes = @[(NSString *) kUTTypeImage];
+//        self.imagePicker.allowsEditing = NO;
+//        [self.imagePicker setDelegate:self];
+//    }
+//    return _imagePicker;
+//}
+
 - (UIImageView *)imageView
 {
     if (!imageView) imageView = [[UIImageView alloc] initWithFrame:CGRectZero];
@@ -182,7 +193,6 @@ static NSString *kNotificationName = @"photoSavedNotification";
 
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    
     [self.imageView setImage:[info objectForKey:UIImagePickerControllerOriginalImage]];
     [self showButtons];
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -192,14 +202,12 @@ static NSString *kNotificationName = @"photoSavedNotification";
 -(void)openCamera {
     [self hideButtons];
     if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-            
         self.imagePicker = [[UIImagePickerController alloc] init];
-        
         [self.imagePicker setSourceType:UIImagePickerControllerSourceTypeCamera];
         self.imagePicker.mediaTypes = @[(NSString *) kUTTypeImage];
-        
         self.imagePicker.allowsEditing = NO;
         [self.imagePicker setDelegate:self];
+        
         
         [self presentViewController: self.imagePicker animated: YES completion:nil];
     }
@@ -244,8 +252,7 @@ static NSString *kNotificationName = @"photoSavedNotification";
 
 - (void)didReceiveMemoryWarning
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+//    [super didReceiveMemoryWarning];
 }
 
 @end

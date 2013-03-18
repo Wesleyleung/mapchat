@@ -141,7 +141,6 @@
         view = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:reuseId];
         view.canShowCallout = YES;
         view.animatesDrop = YES;
-        view.pinColor = MKPinAnnotationColorGreen;
         
         if ([mapView.delegate respondsToSelector:@selector(mapView:annotationView:
             calloutAccessoryControlTapped:)]) {

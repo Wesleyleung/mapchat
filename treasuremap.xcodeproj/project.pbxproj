@@ -57,7 +57,7 @@
 /* Begin PBXFileReference section */
 		2B0E310D16F66371007239AE /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		2B40DE1D16EBFFA500A87B22 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		2B46C8F616E6B5D900C8B966 /* treasuremap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = treasuremap.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2B46C8F616E6B5D900C8B966 /* MapChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MapChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B46C8F916E6B5D900C8B966 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		2B46C8FB16E6B5D900C8B966 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		2B46C8FD16E6B5D900C8B966 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -178,7 +178,7 @@
 		2B46C8F716E6B5D900C8B966 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2B46C8F616E6B5D900C8B966 /* treasuremap.app */,
+				2B46C8F616E6B5D900C8B966 /* MapChat.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -268,7 +268,7 @@
 			);
 			name = MapChat;
 			productName = treasuremap;
-			productReference = 2B46C8F616E6B5D900C8B966 /* treasuremap.app */;
+			productReference = 2B46C8F616E6B5D900C8B966 /* MapChat.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */

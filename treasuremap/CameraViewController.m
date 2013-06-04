@@ -47,6 +47,7 @@ static NSString *kNotificationName = @"photoSavedNotification";
     return _locationManager;
 }
 
+//Lazy instantiation sometimes causes the iPhone camera to not open all the way. Strange.
 //- (UIImagePickerController *)imagePicker {
 //    if(!_imagePicker) {
 //        _imagePicker = [[UIImagePickerController alloc] init];
@@ -230,12 +231,13 @@ static NSString *kNotificationName = @"photoSavedNotification";
     [super viewDidDisappear:(BOOL)animated];    
 }
 
+//For testing only
 -(void)postNotificationPhotoSaved {
     [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationName object:nil];
 }
 
 -(void)useNotificationPhotoSaved:(NSNotification *)notification {
-    NSLog(@"Photo saved!");
+//    NSLog(@"Photo saved!");
 }
 
 - (void)viewDidLoad

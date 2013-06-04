@@ -14,8 +14,5 @@
 
 @interface MapViewController : LoginViewController <MKMapViewDelegate, CLLocationManagerDelegate, PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
 
-+(void)photoLoadInProgress;
-+(void)photoLoadFinished;
-
 
 @end

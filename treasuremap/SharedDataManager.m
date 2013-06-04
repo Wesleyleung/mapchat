@@ -14,7 +14,6 @@
 
 - (IBAction)refresh:(id)sender {
     NSLog(@"Photo saved to Parse server!");
-    [MapViewController photoLoadFinished];
 }
 
 - (void)saveMomentDataToServer:(NSData *)imageData text:(NSString *)text

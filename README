@@ -1,0 +1,37 @@
+user: wleung1 (Leung, Wesley)
+
+MapChat
+Credit to https://www.parse.com/ ios documentation and tutorials for working with the Parse Data sdk. I am using this framework to support live data updates as well as allow for server queries. Live photos are an integral part of my application's user experience and functionality so the app itself is deeply integrated with Parse.
+
+Directions:
+
+Login View:
+1. On first load, user is presented with a login screen with Facebook.
+2. Sign in by authenticating with Facebook.
+3. After authethenication, you will be shown a tab bar screen with a map view as the initial screen.
+
+Map View:
+4. Tapping "update" will search within 1km for any photos left by you or others. New photos will appear as red pins on the map. Note that since you are the only user of my app, there likely will not be any pins unless you've taken a few photos yourself (see step 7).
+5. Tapping the compass button will zoom the view to the user's current location and orient like the default Apple Maps application.
+6. Tapping "logout" will log the user out and take the app back to the Facebook MapChat login screen.
+
+Camera View:
+7. Tapping the camera icon on the tab bar controller will open up the Camera.
+8. After snapping a picture, you may add a short note to the photo by tapping anywhere on the scree. A grey UITextField will appear at the top
+9. Finish writing by hitting "return" on the keyboard or tapping anywhere outside the textfield. The field only takes limited characters.
+10. Tapping the "X" icon will cancel the image and re-open up the iPhone camera.
+11. Tapping the number icon sets how long you want the image to be viewable (like SnapChat). A user will only have between 1-10 seconds to view your image before it is deleted forever.
+12. Tapping the "->" icon will send your edited image to my live Parse server.
+13. The view will transition back to the Map View.
+
+Map View Pt 2:
+13. After 15-20 seconds, the image you just sent will be available from the cloud. When running with the console open, the app will print out "Photo saved to Parse server!"
+14. Tap "update" and a new red pin representing your photo should appear.
+15. Tapping a pin opens up an annotation showing the photographer's Facebook username and the note they left on their photo.
+16. Tapping the blue arrow will segue to an image view. You have between 1-10 seconds to view the image before it vanishes and you are segue'd back to the main Map View. A countdown timer on the bottom left will tick down.
+17. Note that the red pin representing the image you just viewed is no longer on the map.
+18. If you want to move back to the Map View and delete the image before the timer is up, you may make a right swipe gesture to manually segue back to the Map View from the Image view.
+
+Misc.
+19. Because I'm running live data, other users of this app can snap their own photos. If you are within 1km of where they snapped their picture, you would be able to view it in real time. This is the core use case of the "MapChat" app. It represents ephemeral, location-based photo messaging. 
+20. To review my proposal detailing iOS features, please visit: https://docs.google.com/document/d/1mEozQBFUhVtbJvxVos6VESYDLFiM7EQTMcuDclAHFzs/edit?usp=sharing

@@ -113,22 +113,6 @@
 }
 
 
-//-(void)photoLoadInProgress {
-//    self.photoSavedNotification.hidden = YES;
-//}
-
-+(void)photoLoadFinished {
-//    [NSTimer scheduledTimerWithTimeInterval:2.0
-//                                     target:self
-//                                   selector:@selector(hideLabel:)
-//                                   userInfo:nil
-//                                    repeats:NO];
-}
-
-- (void)hideLabel {
-    self.photoSavedNotification.hidden = YES;
-}
-
 #pragma mark MKMapViewDelegate methods
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
     //set current location to blue dot
